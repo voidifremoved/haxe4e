@@ -37,7 +37,7 @@ If you don't have Eclipse installed you can install [Haxe Studio](https://github
 
 To install Haxe4E into an existing Eclipse installation do:
 1. Within Eclipse go to: Help -> Install New Software...
-1. Enter the following update site URL: https://raw.githubusercontent.com/haxe4e/haxe4e/updatesite
+1. Enter the following update site URL: https://raw.githubusercontent.com/voidifremoved/haxe4e/updatesite
 1. Select the `Haxe4E` feature to install.
 1. Ensure that the option `Contact all update sites during install to find required software` is enabled.
 1. Click `Next` twice.
