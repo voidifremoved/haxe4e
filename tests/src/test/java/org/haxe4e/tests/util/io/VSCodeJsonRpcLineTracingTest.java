@@ -18,38 +18,38 @@ import org.junit.jupiter.api.Test;
  */
 class VSCodeJsonRpcLineTracingTest {
 
-   @Test
-   void testTraceLine() {
-      final var out = new ByteArrayOutputStream();
+    @Test
+    void testTraceLine() {
+        final var out = new ByteArrayOutputStream();
 
-      VSCodeJsonRpcLineTracing.traceLine(VSCodeJsonRpcLineTracing.Source.CLIENT_OUT, "test", out, true, false);
-      assertThat(out.toString()).contains("CLIENT >> test");
+        VSCodeJsonRpcLineTracing.traceLine(VSCodeJsonRpcLineTracing.Source.CLIENT_OUT, "test", out, true, false);
+        assertThat(out.toString()).contains("CLIENT >> test");
 
-      out.reset();
-      VSCodeJsonRpcLineTracing.traceLine(VSCodeJsonRpcLineTracing.Source.SERVER_OUT, "test", out, true, false);
-      assertThat(out.toString()).contains("SERVER << test");
+        out.reset();
+        VSCodeJsonRpcLineTracing.traceLine(VSCodeJsonRpcLineTracing.Source.SERVER_OUT, "test", out, true, false);
+        assertThat(out.toString()).contains("SERVER << test");
 
-      out.reset();
-      VSCodeJsonRpcLineTracing.traceLine(VSCodeJsonRpcLineTracing.Source.SERVER_ERR, "test", out, true, false);
-      assertThat(out.toString()).contains("SRVERR << test");
+        out.reset();
+        VSCodeJsonRpcLineTracing.traceLine(VSCodeJsonRpcLineTracing.Source.SERVER_ERR, "test", out, true, false);
+        assertThat(out.toString()).contains("SRVERR << test");
 
-      out.reset();
-      VSCodeJsonRpcLineTracing.traceLine(VSCodeJsonRpcLineTracing.Source.CLIENT_OUT,
-         "Content-Length: 10\r\ntest", out, false, false);
-      assertThat(out.toString()).contains("CLIENT >> Content-Length: 10\r\ntest");
+        out.reset();
+        VSCodeJsonRpcLineTracing.traceLine(VSCodeJsonRpcLineTracing.Source.CLIENT_OUT, "Content-Length: 10\r\ntest",
+                out, false, false);
+        assertThat(out.toString()).contains("CLIENT >> Content-Length: 10\r\ntest");
 
-      out.reset();
-      VSCodeJsonRpcLineTracing.traceLine(VSCodeJsonRpcLineTracing.Source.CLIENT_OUT,
-         "\"jsonrpc\":\"2.0\",test", out, false, false);
-      assertThat(out.toString()).contains("CLIENT >> test");
+        out.reset();
+        VSCodeJsonRpcLineTracing.traceLine(VSCodeJsonRpcLineTracing.Source.CLIENT_OUT, "\"jsonrpc\":\"2.0\",test", out,
+                false, false);
+        assertThat(out.toString()).contains("CLIENT >> test");
 
-      out.reset();
-      VSCodeJsonRpcLineTracing.traceLine(VSCodeJsonRpcLineTracing.Source.CLIENT_OUT,
-         "Content-Type: application/vscode-jsonrpc; charset=utf-8", out, false, false);
-      assertThat(out.toString()).isEmpty();
+        out.reset();
+        VSCodeJsonRpcLineTracing.traceLine(VSCodeJsonRpcLineTracing.Source.CLIENT_OUT,
+                "Content-Type: application/vscode-jsonrpc; charset=utf-8", out, false, false);
+        assertThat(out.toString()).isEmpty();
 
-      out.reset();
-      VSCodeJsonRpcLineTracing.traceLine(VSCodeJsonRpcLineTracing.Source.CLIENT_OUT, "   ", out, false, false);
-      assertThat(out.toString()).isEmpty();
-   }
+        out.reset();
+        VSCodeJsonRpcLineTracing.traceLine(VSCodeJsonRpcLineTracing.Source.CLIENT_OUT, "   ", out, false, false);
+        assertThat(out.toString()).isEmpty();
+    }
 }

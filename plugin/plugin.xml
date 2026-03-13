@@ -585,4 +585,48 @@
          </with>
       </definition>
    </extension>
+
+
+   <!-- ===================================== -->
+   <!-- Quick Assist                          -->
+   <!-- ===================================== -->
+   <extension point="org.eclipse.ui.ide.markerResolution">
+      <markerResolutionGenerator
+         class="org.eclipse.lsp4e.operations.codeactions.LSPCodeActionMarkerResolution"
+         markerType="org.eclipse.lsp4e.diagnostic" />
+   </extension>
+
+   <extension point="org.eclipse.ui.menus">
+      <menuContribution locationURI="popup:#TextEditorContext?after=additions">
+         <menu id="org.haxe4e.menu.source" label="Source">
+            <command commandId="org.eclipse.lsp4e.format" />
+         </menu>
+         <menu id="org.eclipse.lsp4e.menu.refactorings" label="Refactor">
+            <command commandId="org.eclipse.ui.edit.rename" style="push" />
+            <separator name="org.eclipse.lsp4e.refactoringseparator" />
+         </menu>
+         <menu id="org.eclipse.lsp4e.menu.codeActions" label="Quick Fix">
+            <dynamic class="org.eclipse.lsp4e.operations.codeactions.LSPCodeActionsMenu" id="org.eclipse.lsp4e.codeActions" />
+         </menu>
+      </menuContribution>
+      <menuContribution locationURI="popup:org.haxe4e.editor.HaxeEditorContext?after=additions">
+         <menu id="org.haxe4e.menu.source.haxe" label="Source">
+            <command commandId="org.eclipse.lsp4e.format" />
+         </menu>
+         <menu id="org.eclipse.lsp4e.menu.refactorings.haxe" label="Refactor">
+            <command commandId="org.eclipse.ui.edit.rename" style="push" />
+            <separator name="org.eclipse.lsp4e.refactoringseparator" />
+         </menu>
+         <menu id="org.eclipse.lsp4e.menu.codeActions.haxe" label="Quick Fix">
+            <dynamic class="org.eclipse.lsp4e.operations.codeactions.LSPCodeActionsMenu" id="org.eclipse.lsp4e.codeActions" />
+         </menu>
+      </menuContribution>
+   </extension>
+
+   <extension point="org.eclipse.ui.genericeditor.quickAssistProcessors">
+      <quickAssistProcessor
+         class="org.eclipse.lsp4e.operations.codeactions.LSPCodeActionQuickAssistProcessor"
+         contentType="org.haxe4e.content.haxe">
+      </quickAssistProcessor>
+   </extension>
 </plugin>

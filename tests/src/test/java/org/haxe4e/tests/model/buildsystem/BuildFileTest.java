@@ -28,60 +28,60 @@ import net.sf.jstuff.xml.DOMFile;
  */
 class BuildFileTest {
 
-   @Test
-   void testHaxeBuildFile() {
-      final var parentMock = asNonNull(mock(IContainer.class));
-      final var fileMock = asNonNull(mock(IFile.class));
-      when(fileMock.getLocation()).thenReturn(Path.fromOSString("test.hxml"));
-      when(fileMock.getParent()).thenReturn(parentMock);
-      when(parentMock.getProjectRelativePath()).thenReturn(Path.fromOSString(""));
-      final var buildFile = new HaxeBuildFile(fileMock) {
-         @Override
-         public List<String> getArgs() throws RuntimeIOException {
-            return parseArgs(Paths.get("src/test/resources/test.hxml"));
-         }
-      };
+    @Test
+    void testHaxeBuildFile() {
+        final var parentMock = asNonNull(mock(IContainer.class));
+        final var fileMock = asNonNull(mock(IFile.class));
+        when(fileMock.getLocation()).thenReturn(Path.fromOSString("test.hxml"));
+        when(fileMock.getParent()).thenReturn(parentMock);
+        when(parentMock.getProjectRelativePath()).thenReturn(Path.fromOSString(""));
+        final var buildFile = new HaxeBuildFile(fileMock) {
+            @Override
+            public List<String> getArgs() throws RuntimeIOException {
+                return parseArgs(Paths.get("src/test/resources/test.hxml"));
+            }
+        };
 
-      final var args = buildFile.getArgs();
-      assertThat(args).contains( //
-         "-cp", "src", //
-         "-p", "dir/another src", //
-         "--class-path", "dir/yet another src", //
-         //
-         "-lib", "lib1", //
-         "-L", "lib2", //
-         "--library", "lib3:1.0.0"//
-      ).doesNotContain( //
-         "commented-out-src", //
-         "commented-out-lib:1.0.0" //
-      );
+        final var args = buildFile.getArgs();
+        assertThat(args).contains( //
+                "-cp", "src", //
+                "-p", "dir/another src", //
+                "--class-path", "dir/yet another src", //
+                //
+                "-lib", "lib1", //
+                "-L", "lib2", //
+                "--library", "lib3:1.0.0"//
+        ).doesNotContain( //
+                "commented-out-src", //
+                "commented-out-lib:1.0.0" //
+        );
 
-      assertThat(buildFile.getSourcePaths()).containsExactly( //
-         Path.fromOSString("src"), //
-         Path.fromOSString("dir/another src"), //
-         Path.fromOSString("dir/yet another src") //
-      );
-   }
+        assertThat(buildFile.getSourcePaths()).containsExactly( //
+                Path.fromOSString("src"), //
+                Path.fromOSString("dir/another src"), //
+                Path.fromOSString("dir/yet another src") //
+        );
+    }
 
-   @Test
-   void testLimeBuildFile() {
-      final var parentMock = asNonNull(mock(IContainer.class));
-      final var fileMock = asNonNull(mock(IFile.class));
-      when(fileMock.getLocation()).thenReturn(Path.fromOSString("lime.xml"));
-      when(fileMock.getParent()).thenReturn(parentMock);
-      when(parentMock.getProjectRelativePath()).thenReturn(Path.fromOSString(""));
+    @Test
+    void testLimeBuildFile() {
+        final var parentMock = asNonNull(mock(IContainer.class));
+        final var fileMock = asNonNull(mock(IFile.class));
+        when(fileMock.getLocation()).thenReturn(Path.fromOSString("lime.xml"));
+        when(fileMock.getParent()).thenReturn(parentMock);
+        when(parentMock.getProjectRelativePath()).thenReturn(Path.fromOSString(""));
 
-      final var buildFile = new LimeBuildFile(fileMock) {
-         @Override
-         public DOMFile parseFile() throws RuntimeIOException {
-            return parseFile(Paths.get("src/test/resources/lime.xml").toFile());
-         }
-      };
+        final var buildFile = new LimeBuildFile(fileMock) {
+            @Override
+            public DOMFile parseFile() throws RuntimeIOException {
+                return parseFile(Paths.get("src/test/resources/lime.xml").toFile());
+            }
+        };
 
-      assertThat(buildFile.getSourcePaths()).containsExactly( //
-         Path.fromOSString("src"), //
-         Path.fromOSString("dir/another src"), //
-         Path.fromOSString("dir/yet another src") //
-      );
-   }
+        assertThat(buildFile.getSourcePaths()).containsExactly( //
+                Path.fromOSString("src"), //
+                Path.fromOSString("dir/another src"), //
+                Path.fromOSString("dir/yet another src") //
+        );
+    }
 }
