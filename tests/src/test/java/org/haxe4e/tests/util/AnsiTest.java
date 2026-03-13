@@ -16,17 +16,17 @@ import org.junit.jupiter.api.Test;
  */
 class AnsiTest {
 
-   @Test
-   void testAnsi() {
-      assertThat(Ansi.RESET).isEqualTo("\033[0m");
-      assertThat(Ansi.BOLD).isEqualTo("\033[1m");
-      assertThat(Ansi.RED).isEqualTo("\033[31m");
-      assertThat(Ansi.GREEN).isEqualTo("\033[32m");
-      assertThat(Ansi.YELLOW).isEqualTo("\033[33m");
-      assertThat(Ansi.BLUE).isEqualTo("\033[34m");
-      assertThat(Ansi.MAGENTA).isEqualTo("\033[35m");
-      assertThat(Ansi.CYAN).isEqualTo("\033[36m");
-      assertThat(Ansi.WHITE).isEqualTo("\033[37m");
-      assertThat(Ansi.GRAY).isEqualTo("\033[90m");
-   }
+    @Test
+    void testAnsi() {
+        assertThat(Ansi.RESET).isEqualTo("\033[0m");
+        assertThat(Ansi.BOLD).isEqualTo("\033[1m");
+        assertThat(Ansi.RED).isEqualTo("\033[31m");
+        assertThat(Ansi.GREEN).isEqualTo("\033[32m");
+        assertThat(Ansi.YELLOW).isEqualTo("\033[33m");
+        assertThat(Ansi.BLUE).isEqualTo("\033[34m");
+        assertThat(Ansi.MAGENTA).isEqualTo("\033[35m");
+        assertThat(Ansi.CYAN).isEqualTo("\033[36m");
+        assertThat(Ansi.WHITE).isEqualTo("\033[37m");
+        assertThat(Ansi.GRAY).isEqualTo("\033[90m");
+    }
 }
