@@ -3,7 +3,7 @@
    SPDX-FileCopyrightText: © Haxe4E authors
    SPDX-FileContributor: Sebastian Thomschke
    SPDX-License-Identifier: EPL-2.0
-   SPDX-ArtifactOfProjectHomePage: https://github.com/haxe4e/haxe4e
+   SPDX-ArtifactOfProjectHomePage: https://github.com/voidifremoved/haxe4e
 -->
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
